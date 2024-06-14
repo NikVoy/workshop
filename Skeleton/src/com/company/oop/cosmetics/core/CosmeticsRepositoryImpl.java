@@ -41,7 +41,13 @@ public class CosmeticsRepositoryImpl implements CosmeticsRepository {
 
     @Override
     public Product findProductByName(String productName) {
-        throw new UnsupportedOperationException("Not implemented yet. CosmeticsRepositoryImpl class.");
+        for (Product product : products) {
+            if (product.getName().equals(productName)){
+                return product;
+            }
+        }
+
+        throw new IllegalArgumentException(String.format(PRODUCT_DOES_NOT_EXIST, productName));
     }
 
     @Override
@@ -64,7 +70,8 @@ public class CosmeticsRepositoryImpl implements CosmeticsRepository {
 
     @Override
     public Product createProduct(String name, String brand, double price, String gender) {
-        throw new UnsupportedOperationException("Not implemented yet. CosmeticsRepositoryImpl class.");
+
+        return new ProductImpl(name, brand, price, GenderType.valueOf(gender));
     }
 
     @Override
