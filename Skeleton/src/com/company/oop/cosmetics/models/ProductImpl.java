@@ -28,7 +28,7 @@ public class ProductImpl implements Product {
     }
 
     public void setName(String name) {
-        ValidationHelpers.validateStringLength(name, nameMinLength, nameMaxLength, "Name");
+        ValidationHelpers.validateStringLength(name, nameMinLength, nameMaxLength, "Product name");
         this.name = name;
     }
 
@@ -38,7 +38,7 @@ public class ProductImpl implements Product {
     }
 
     public void setBrand(String brand) {
-        ValidationHelpers.validateStringLength(brand, brandMinLength, brandMaxLength, "Brand");
+        ValidationHelpers.validateStringLength(brand, brandMinLength, brandMaxLength, "Product brand");
         this.brand = brand;
     }
 
