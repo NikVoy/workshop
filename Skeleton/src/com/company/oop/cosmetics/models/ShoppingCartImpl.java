@@ -2,6 +2,7 @@ package com.company.oop.cosmetics.models;
 
 import com.company.oop.cosmetics.models.contracts.Product;
 import com.company.oop.cosmetics.models.contracts.ShoppingCart;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,32 +11,47 @@ public class ShoppingCartImpl implements ShoppingCart {
     private final List<Product> productList;
 
     public ShoppingCartImpl() {
-        throw new UnsupportedOperationException("Not implemented yet. ShoppingCartImpl class.");
+        this.productList = new ArrayList<Product>();
     }
 
     @Override
     public List<Product> getProducts() {
-        throw new UnsupportedOperationException("Not implemented yet. ShoppingCartImpl class.");
+        return this.productList;
     }
 
     @Override
     public void addProduct(Product product) {
-        throw new UnsupportedOperationException("Not implemented yet. ShoppingCartImpl class.");
+        if (product == null){
+            throw new IllegalArgumentException("Cannot add product which is null!");
+        }
+        this.productList.add(product);
     }
 
     @Override
     public void removeProduct(Product product) {
-        throw new UnsupportedOperationException("Not implemented yet. ShoppingCartImpl class.");
+        if (product == null){
+            throw new IllegalArgumentException("Cannot remove product which is null!");
+        }
+        this.productList.remove(product);
     }
 
     @Override
     public boolean containsProduct(Product product) {
-        throw new UnsupportedOperationException("Not implemented yet. ShoppingCartImpl class.");
+        if (product == null){
+            throw new IllegalArgumentException("Cannot contains product which is null!");
+        }
+        return this.productList.contains(product);
     }
 
     @Override
     public double totalPrice() {
-        throw new UnsupportedOperationException("Not implemented yet. ShoppingCartImpl class.");
+        double totalPrice = 0;
+
+        for (Product product : productList) {
+            totalPrice += product.getPrice();
+        }
+
+        return totalPrice;
     }
 
 }

@@ -6,6 +6,7 @@ import com.company.oop.cosmetics.models.contracts.Product;
 import com.company.oop.cosmetics.models.contracts.ShoppingCart;
 import com.company.oop.cosmetics.models.enums.GenderType;
 import com.company.oop.cosmetics.models.*;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,23 +27,23 @@ public class CosmeticsRepositoryImpl implements CosmeticsRepository {
 
     @Override
     public ShoppingCart getShoppingCart() {
-        return shoppingCart;
+        return this.shoppingCart;
     }
 
     @Override
     public List<Category> getCategories() {
-        return new ArrayList<>(categories);
+        return this.categories;
     }
 
     @Override
     public List<Product> getProducts() {
-        return new ArrayList<>(products);
+        return this.products;
     }
 
     @Override
     public Product findProductByName(String productName) {
-        for (Product product : products) {
-            if (product.getName().equals(productName)){
+        for (Product product : this.getProducts()) {
+            if (product.getName().equals(productName)) {
                 return product;
             }
         }
@@ -52,7 +53,7 @@ public class CosmeticsRepositoryImpl implements CosmeticsRepository {
 
     @Override
     public Category findCategoryByName(String categoryName) {
-        for (Category category : getCategories()) {
+        for (Category category : this.getCategories()) {
             if (category.getName().equalsIgnoreCase(categoryName)) {
                 return category;
             }
@@ -70,8 +71,9 @@ public class CosmeticsRepositoryImpl implements CosmeticsRepository {
 
     @Override
     public Product createProduct(String name, String brand, double price, String gender) {
-
-        return new ProductImpl(name, brand, price, GenderType.valueOf(gender));
+        Product product = new ProductImpl(name, brand, price, GenderType.valueOf(gender.toUpperCase()));
+        this.products.add(product);
+        return product;
     }
 
     @Override
