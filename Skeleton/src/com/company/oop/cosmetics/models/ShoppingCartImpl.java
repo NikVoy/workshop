@@ -16,7 +16,7 @@ public class ShoppingCartImpl implements ShoppingCart {
 
     @Override
     public List<Product> getProducts() {
-        return this.productList;
+        return new ArrayList<>(this.productList);
     }
 
     @Override

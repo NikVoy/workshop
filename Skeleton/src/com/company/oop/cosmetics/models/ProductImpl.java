@@ -5,10 +5,10 @@ import com.company.oop.cosmetics.models.enums.GenderType;
 import com.company.oop.cosmetics.utils.ValidationHelpers;
 
 public class ProductImpl implements Product {
-    private static final int productNameMinLength = 3;
-    private static final int productNameMaxLength = 10;
-    private static final int productBrandMinLength = 2;
-    private static final int productBrandMaxLength = 10;
+    private static final int PRODUCT_NAME_MIN_LENGTH = 3;
+    private static final int PRODUCT_NAME_MAX_LENGTH = 10;
+    private static final int PRODUCT_BRAND_MIN_LENGTH = 2;
+    private static final int PRODUCT_BRAND_MAX_LENGTH = 10;
 
     private double price;
     private String name;
@@ -28,7 +28,7 @@ public class ProductImpl implements Product {
     }
 
     public void setName(String name) {
-        ValidationHelpers.validateStringLength(name, productNameMinLength, productNameMaxLength, "Product name");
+        ValidationHelpers.validateStringLength(name, PRODUCT_NAME_MIN_LENGTH, PRODUCT_NAME_MAX_LENGTH, "Product name");
         this.name = name;
     }
 
@@ -38,7 +38,7 @@ public class ProductImpl implements Product {
     }
 
     public void setBrand(String brand) {
-        ValidationHelpers.validateStringLength(brand, productBrandMinLength, productBrandMaxLength, "Product brand");
+        ValidationHelpers.validateStringLength(brand, PRODUCT_BRAND_MIN_LENGTH, PRODUCT_BRAND_MAX_LENGTH, "Product brand");
         this.brand = brand;
     }
 

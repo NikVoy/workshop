@@ -8,8 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CategoryImpl implements Category {
-    private static final int categoryNameMinLength = 2;
-    private static final int categoryNameMaxLength = 15;
+    private static final int CATEGORY_NAME_MIN_LENGTH = 2;
+    private static final int CATEGORY_NAME_MAX_LENGTH = 15;
 
     private String name;
     private List<Product> products;
@@ -25,13 +25,13 @@ public class CategoryImpl implements Category {
     }
 
     public void setName(String name) {
-        ValidationHelpers.validateStringLength(name, categoryNameMinLength, categoryNameMaxLength, "Category name");
+        ValidationHelpers.validateStringLength(name, CATEGORY_NAME_MIN_LENGTH, CATEGORY_NAME_MAX_LENGTH, "Category name");
         this.name = name;
     }
 
     @Override
     public List<Product> getProducts() {
-        return this.products;
+        return new ArrayList<>(this.products);
     }
 
     @Override
