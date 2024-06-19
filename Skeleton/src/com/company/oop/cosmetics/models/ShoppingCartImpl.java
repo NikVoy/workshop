@@ -2,16 +2,20 @@ package com.company.oop.cosmetics.models;
 
 import com.company.oop.cosmetics.models.contracts.Product;
 import com.company.oop.cosmetics.models.contracts.ShoppingCart;
+import com.company.oop.cosmetics.utils.ValidationHelpers;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class ShoppingCartImpl implements ShoppingCart {
 
+    public static final String CANNOT_ADD_PRODUCT_WHICH_IS_NULL = "Cannot add product which is null!";
+    public static final String CANNOT_CONTAINS_PRODUCT_WHICH_IS_NULL = "Cannot contains product which is null!";
+    public static final String CANNOT_REMOVE_PRODUCT_WHICH_IS_NULL = "Cannot remove product which is null!";
     private final List<Product> productList;
 
     public ShoppingCartImpl() {
-        this.productList = new ArrayList<Product>();
+        this.productList = new ArrayList<>();
     }
 
     @Override
@@ -21,25 +25,19 @@ public class ShoppingCartImpl implements ShoppingCart {
 
     @Override
     public void addProduct(Product product) {
-        if (product == null){
-            throw new IllegalArgumentException("Cannot add product which is null!");
-        }
+        ValidationHelpers.validateIsInputNull(product);
         this.productList.add(product);
     }
 
     @Override
     public void removeProduct(Product product) {
-        if (product == null){
-            throw new IllegalArgumentException("Cannot remove product which is null!");
-        }
+        ValidationHelpers.validateIsInputNull(product);
         this.productList.remove(product);
     }
 
     @Override
     public boolean containsProduct(Product product) {
-        if (product == null){
-            throw new IllegalArgumentException("Cannot contains product which is null!");
-        }
+        ValidationHelpers.validateIsInputNull(product);
         return this.productList.contains(product);
     }
 

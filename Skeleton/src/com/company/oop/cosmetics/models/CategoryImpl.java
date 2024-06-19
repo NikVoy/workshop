@@ -10,6 +10,9 @@ import java.util.List;
 public class CategoryImpl implements Category {
     private static final int CATEGORY_NAME_MIN_LENGTH = 2;
     private static final int CATEGORY_NAME_MAX_LENGTH = 15;
+    public static final String CATEGORY_NAME = "Category name";
+    public static final String CANNOT_ADD_PRODUCT_WHICH_IS_NULL = "Cannot add product which is null!";
+    public static final String PRODUCT_IS_NOT_FOUND = "Product is not found!";
 
     private String name;
     private List<Product> products;
@@ -25,7 +28,7 @@ public class CategoryImpl implements Category {
     }
 
     public void setName(String name) {
-        ValidationHelpers.validateStringLength(name, CATEGORY_NAME_MIN_LENGTH, CATEGORY_NAME_MAX_LENGTH, "Category name");
+        ValidationHelpers.validateStringLength(name, CATEGORY_NAME_MIN_LENGTH, CATEGORY_NAME_MAX_LENGTH, CATEGORY_NAME);
         this.name = name;
     }
 
@@ -36,17 +39,17 @@ public class CategoryImpl implements Category {
 
     @Override
     public void addProduct(Product product) {
-        if (product == null) {
-            throw new IllegalArgumentException("Cannot add product which is null!");
-        }
+        ValidationHelpers.validateIsInputNull(product);
         this.products.add(product);
     }
 
     @Override
     public void removeProduct(Product product) {
-        if (!this.products.remove(product)) {
-            throw new IllegalArgumentException("Product is not found!");
+        if (!this.products.contains(product)) {
+            throw new IllegalArgumentException(PRODUCT_IS_NOT_FOUND);
         }
+
+        this.products.remove(product);
     }
 
     @Override

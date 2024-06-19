@@ -6,6 +6,7 @@ import com.company.oop.cosmetics.models.contracts.Product;
 import com.company.oop.cosmetics.models.contracts.ShoppingCart;
 import com.company.oop.cosmetics.models.enums.GenderType;
 import com.company.oop.cosmetics.models.*;
+import com.company.oop.cosmetics.utils.ParsingHelpers;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,7 +44,7 @@ public class CosmeticsRepositoryImpl implements CosmeticsRepository {
     @Override
     public Product findProductByName(String productName) {
         for (Product product : this.getProducts()) {
-            if (product.getName().equals(productName)) {
+            if (product.getName().equalsIgnoreCase(productName)) {
                 return product;
             }
         }
@@ -71,7 +72,8 @@ public class CosmeticsRepositoryImpl implements CosmeticsRepository {
 
     @Override
     public Product createProduct(String name, String brand, double price, String gender) {
-        Product product = new ProductImpl(name, brand, price, GenderType.valueOf(gender.toUpperCase()));
+        GenderType genderType = ParsingHelpers.tryParseGender(gender);
+        Product product = new ProductImpl(name, brand, price, genderType);
         this.products.add(product);
         return product;
     }

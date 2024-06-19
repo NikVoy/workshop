@@ -21,4 +21,12 @@ public class ParsingHelpers {
             throw new IllegalArgumentException(errorMessage);
         }
     }
+
+    public static GenderType tryParseGender(String valueToParse) {
+        try {
+            return GenderType.valueOf(valueToParse.toUpperCase());
+        } catch (IllegalArgumentException e) {
+            throw new IllegalArgumentException(String.format(NO_SUCH_GENDERTYPE_ENUM, valueToParse));
+        }
+    }
 }
